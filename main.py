@@ -74,15 +74,16 @@ def start_telegram_bot():
     logger.info("🛡️ Security: Personal access only (ID: 8104888431)")
     
     try:
-        # Create Telegram application with enhanced settings
-        application = (Application.builder()
-                      .token(BOT_TOKEN)
-                      .connect_timeout(30)
-                      .read_timeout(30) 
-                      .write_timeout(30)
-                      .pool_timeout=1)
-                      .build())
-        
+        # Create application with enhanced configuration
+        application = (
+            Application.builder()
+            .token(BOT_TOKEN)
+            .connect_timeout(30)
+            .read_timeout(60)
+            .write_timeout(60)
+            .build()
+        )
+               
         # Initialize beast handlers
         handlers = BotHandlers()
         
@@ -102,16 +103,12 @@ def start_telegram_bot():
         logger.info(f"🤖 Beast ready to serve {DEVELOPER_NAME}!")
         logger.info("🚀 Starting bot polling...")
         
-        # Start the beast polling
+               # Start polling (PTB v22 minimal signature)
         application.run_polling(
             allowed_updates=["message", "callback_query"],
             poll_interval=1.0,
             timeout=20,
-            bootstrap_retries=5,
-            read_timeout=30,
-            write_timeout=30,
-            connect_timeout=30,
-            pool_timeout=1
+            bootstrap_retries=5
         )
         
     except Exception as e:
