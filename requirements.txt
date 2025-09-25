@@ -1,0 +1,11 @@
+# ThayinMMII's HacxGPT Beast Dependencies - Termux Optimized
+# Designed for mobile deployment on Android/Termux
+
+flask==3.1.2
+python-telegram-bot==22.0
+requests==2.32.5
+python-dotenv==1.0.0
+aiofiles==23.2.1
+
+# Note: psycopg2-binary intentionally excluded for Termux/mobile compatibility
+# SQLite will be used as the default database for beast conversations
